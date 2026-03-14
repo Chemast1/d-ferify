@@ -8,6 +8,7 @@ import ThreatSection from "./components/ThreatSection";
 import EngineSection from "./components/EngineSection";
 import PillarsSection from "./components/PillarsSection";
 import ContactSection from "./components/ContactSection";
+import DisclaimerSection from "./components/DisclaimerSection";
 import Footer from "./components/Footer";
 
 export default function App() {
@@ -20,36 +21,25 @@ export default function App() {
       dir={t.dir}
       style={{
         fontFamily: t.font,
-        background: "#0B0B0B",
+        background: "var(--color-bg)",
         color: "#fff",
         overflowX: "hidden",
       }}
     >
-      {/* Live intelligence ticker */}
       <TickerBar items={t.ticker} />
-
-      {/* Sticky navbar — sits below ticker */}
       <Navbar t={t} lang={lang} setLang={setLang} />
 
       <main>
-        {/* 1 — Hero */}
-        <HeroSection t={t} isAr={isAr} />
-
-        {/* 2 — Why Now (urgency / Iranian threat context) */}
-        <WhyNowSection t={t} isAr={isAr} />
-
-        {/* 3 — Threat scenarios demo */}
-        <ThreatSection t={t} isAr={isAr} />
-
-        {/* 4 — Methodology (Social Engineering Defense) */}
-        <EngineSection t={t} isAr={isAr} />
-
-        {/* 5 — Three Pillars */}
+        <HeroSection    t={t} isAr={isAr} />
+        <WhyNowSection  t={t} isAr={isAr} />
+        <ThreatSection  t={t} isAr={isAr} />
+        <EngineSection  t={t} isAr={isAr} />
         <PillarsSection t={t} isAr={isAr} />
-
-        {/* 6 — Contact / Briefing request */}
         <ContactSection t={t} isAr={isAr} />
       </main>
+
+      {/* Legal disclaimer — always at bottom, above footer */}
+      <DisclaimerSection t={t} isAr={isAr} />
 
       <Footer t={t} lang={lang} />
     </div>
