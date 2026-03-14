@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Shield, Globe, Menu, X } from "lucide-react";
+import { Shield, Menu, X } from "lucide-react";
 import { LANGUAGES } from "../data/content";
 
 export default function Navbar({ t, lang, setLang }) {
-  const [scrolled,  setScrolled]  = useState(false);
-  const [menuOpen,  setMenuOpen]  = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const isAr = lang === "ar";
 
   useEffect(() => {
@@ -19,55 +19,46 @@ export default function Navbar({ t, lang, setLang }) {
     <nav
       className="fixed left-0 right-0 z-50 px-5 transition-all duration-500"
       style={{
-        top: "28px", // below ticker
-        background: scrolled
-          ? "rgba(11,11,11,0.92)"
-          : "rgba(11,11,11,0.60)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
-        borderBottom: scrolled
-          ? "1px solid rgba(255,255,255,0.07)"
-          : "1px solid transparent",
+        top: "28px",
+        background: scrolled ? "rgba(9,9,11,0.95)" : "rgba(9,9,11,0.6)",
+        backdropFilter: "blur(28px)",
+        WebkitBackdropFilter: "blur(28px)",
+        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.07)" : "1px solid transparent",
       }}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between h-14">
+
         {/* Logo */}
-        <a href="#hero" className="flex items-center gap-3 no-underline">
-          <div
-            className="w-8 h-8 rounded-xl flex items-center justify-center glow-cyan"
-            style={{
-              background: "linear-gradient(135deg,#00E5FF,#0066FF)",
-              boxShadow: "0 0 18px rgba(0,229,255,0.45)",
-            }}
-          >
-            <Shield size={16} color="#0B0B0B" strokeWidth={2.5} />
+        <a href="#hero" className="flex items-center gap-3 no-underline" style={{ textDecoration: "none" }}>
+          <div className="w-8 h-8 rounded-xl flex items-center justify-center glow-cyan"
+            style={{ background: "linear-gradient(135deg, var(--color-cyan), #0055CC)", boxShadow: "0 0 16px var(--color-cyan-glow)" }}>
+            <Shield size={15} color="var(--color-bg)" strokeWidth={2.5} />
           </div>
-          <span
-            className="font-black tracking-widest text-base"
-            style={{ color: "#fff", letterSpacing: "0.15em" }}
-          >
-            {t.nav.brand}
+          <span className="font-display" style={{ color: "#fff", fontSize: "0.95rem", letterSpacing: "0.18em" }}>
+            D-VERIFY
           </span>
-          <span
-            className="hidden sm:block text-xs px-2 py-0.5 rounded-full border font-bold"
-            style={{
-              borderColor: "rgba(212,175,55,0.5)",
-              color: "#D4AF37",
-              letterSpacing: "0.08em",
-            }}
-          >
-            GDMO
+          <span className="hidden sm:block badge"
+            style={{ background: "var(--color-gold-dim)", border: "1px solid rgba(201,168,76,0.35)", color: "var(--color-gold)", fontSize: "0.55rem" }}>
+            {t.nav.proposalBadge || "CONCEPT · 2026"}
           </span>
         </a>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-7">
           {t.nav.links.map((link, i) => (
-            <a
-              key={i}
-              href={`#${sectionIds[i]}`}
-              className="text-xs font-bold uppercase tracking-widest transition-colors duration-200 hover:text-cyan-400"
-              style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none" }}
+            <a key={i} href={`#${sectionIds[i]}`}
+              className="transition-colors duration-200 hover:opacity-100"
+              style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 600,
+                fontSize: "0.7rem",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.38)",
+                textDecoration: "none",
+              }}
+              onMouseEnter={e => e.target.style.color = "var(--color-cyan)"}
+              onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.38)"}
             >
               {link}
             </a>
@@ -77,28 +68,22 @@ export default function Navbar({ t, lang, setLang }) {
         {/* Right controls */}
         <div className="flex items-center gap-2">
           {/* Language switcher */}
-          <div
-            className="flex items-center rounded-xl overflow-hidden"
-            style={{ border: "1px solid rgba(255,255,255,0.1)" }}
-          >
+          <div className="flex items-center rounded-xl overflow-hidden"
+            style={{ border: "1px solid var(--color-border)" }}>
             {LANGUAGES.map(({ code, label }) => (
-              <button
-                key={code}
-                onClick={() => setLang(code)}
-                className="px-3 py-1.5 text-xs font-black tracking-widest transition-all duration-200"
+              <button key={code} onClick={() => setLang(code)}
+                className="transition-all duration-200"
                 style={{
-                  background:
-                    lang === code
-                      ? "rgba(0,229,255,0.15)"
-                      : "transparent",
-                  color:
-                    lang === code
-                      ? "#00E5FF"
-                      : "rgba(255,255,255,0.35)",
-                  borderRight:
-                    code !== "ru"
-                      ? "1px solid rgba(255,255,255,0.08)"
-                      : "none",
+                  padding: "6px 12px",
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "0.65rem",
+                  letterSpacing: "0.12em",
+                  background: lang === code ? "rgba(0,212,240,0.12)" : "transparent",
+                  color: lang === code ? "var(--color-cyan)" : "rgba(255,255,255,0.3)",
+                  borderRight: code !== "ru" ? "1px solid var(--color-border)" : "none",
+                  cursor: "pointer",
+                  border: "none",
                 }}
               >
                 {label}
@@ -107,11 +92,8 @@ export default function Navbar({ t, lang, setLang }) {
           </div>
 
           {/* Mobile burger */}
-          <button
-            className="md:hidden p-2 rounded-lg"
-            style={{ color: "#fff", background: "rgba(255,255,255,0.05)" }}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
+          <button className="md:hidden p-2 rounded-lg" onClick={() => setMenuOpen(!menuOpen)}
+            style={{ color: "#fff", background: "rgba(255,255,255,0.05)", border: "none", cursor: "pointer" }}>
             {menuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
@@ -119,22 +101,21 @@ export default function Navbar({ t, lang, setLang }) {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div
-          className="md:hidden border-t py-4 space-y-1"
-          style={{ borderColor: "rgba(255,255,255,0.07)" }}
-        >
+        <div className="md:hidden border-t py-4 space-y-1"
+          style={{ borderColor: "var(--color-border)" }}>
           {t.nav.links.map((link, i) => (
-            <a
-              key={i}
-              href={`#${sectionIds[i]}`}
-              onClick={() => setMenuOpen(false)}
-              className="block px-4 py-3 text-sm font-bold rounded-xl transition-colors"
+            <a key={i} href={`#${sectionIds[i]}`} onClick={() => setMenuOpen(false)}
+              className="block px-4 py-3 rounded-xl transition-colors"
               style={{
-                color: "rgba(255,255,255,0.6)",
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 600,
+                fontSize: "0.75rem",
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.55)",
                 background: "rgba(255,255,255,0.03)",
                 textDecoration: "none",
-              }}
-            >
+              }}>
               {link}
             </a>
           ))}

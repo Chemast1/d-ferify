@@ -1,30 +1,18 @@
 export default function TickerBar({ items }) {
-  // Duplicate for seamless loop
   const all = [...items, ...items];
-
   return (
-    <div
-      className="fixed top-0 left-0 right-0 z-[60] overflow-hidden"
+    <div className="fixed top-0 left-0 right-0 z-[60] overflow-hidden"
       style={{
-        background: "rgba(0,229,255,0.06)",
-        borderBottom: "1px solid rgba(0,229,255,0.15)",
         height: "28px",
-      }}
-    >
-      <div className="ticker-track flex items-center h-full whitespace-nowrap gap-12 px-6">
+        background: "rgba(0,212,240,0.05)",
+        borderBottom: "1px solid rgba(0,212,240,0.12)",
+      }}>
+      <div className="ticker-track flex items-center h-full whitespace-nowrap">
         {all.map((item, i) => (
-          <span
-            key={i}
-            className="text-xs font-mono shrink-0"
-            style={{ color: "rgba(0,229,255,0.7)" }}
-          >
+          <span key={i} className="font-mono shrink-0 px-8"
+            style={{ fontSize: "0.62rem", color: "rgba(0,212,240,0.6)", letterSpacing: "0.06em" }}>
             {item}
-            <span
-              className="mx-6 opacity-20"
-              style={{ color: "#00E5FF" }}
-            >
-              ·
-            </span>
+            <span className="mx-6" style={{ color: "rgba(0,212,240,0.2)" }}>·</span>
           </span>
         ))}
       </div>

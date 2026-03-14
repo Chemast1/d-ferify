@@ -7,95 +7,68 @@ export default function HeroSection({ t, isAr }) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden"
-      style={{ paddingTop: "100px" }}
+      className="noise relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden"
+      style={{ paddingTop: "100px", background: "var(--color-bg)" }}
     >
       <ParticleCanvas />
 
-      {/* Ambient glow orbs */}
-      <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 65%)" }}
-      />
-      <div
-        className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 65%)" }}
-      />
+      {/* Layered ambient glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(0,212,240,0.07) 0%, transparent 70%)" }} />
+      <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 65%)" }} />
+      <div className="absolute top-1/3 left-1/6 w-[300px] h-[300px] pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(0,212,240,0.04) 0%, transparent 65%)" }} />
 
       <div className="relative z-10 max-w-5xl mx-auto w-full">
+
         {/* Badge */}
-        <div
-          className="anim-fade-up anim-fade-up-d1 inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
-          style={{
-            background: "rgba(0,229,255,0.08)",
-            border: "1px solid rgba(0,229,255,0.28)",
-          }}
-        >
-          <span
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ background: "#00E5FF", boxShadow: "0 0 8px #00E5FF", animation: "ping-slow 2s infinite" }}
-          />
-          <span
-            className="text-xs font-black tracking-widest"
-            style={{ color: "#00E5FF" }}
-          >
+        <div className="anim-fade-up anim-fade-up-d1 flex justify-center mb-8">
+          <div className="badge" style={{ background: "rgba(0,212,240,0.08)", border: "1px solid rgba(0,212,240,0.25)", color: "var(--color-cyan)" }}>
+            <span className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+              style={{ background: "var(--color-cyan)", boxShadow: "0 0 6px var(--color-cyan)", animation: "ping-slow 2.2s infinite", display:"inline-block" }} />
             {h.badge}
-          </span>
+          </div>
         </div>
 
         {/* Title */}
         <h1
-          className="anim-fade-up anim-fade-up-d2 font-black leading-none mb-6"
+          className={`anim-fade-up anim-fade-up-d2 ${isAr ? "" : "font-display"} leading-none mb-6`}
           style={{
-            fontSize: "clamp(3.2rem,8.5vw,7.5rem)",
-            letterSpacing: isAr ? "-0.01em" : "-0.04em",
-            fontFamily: "inherit",
+            fontSize: "clamp(3rem, 8.5vw, 7.5rem)",
+            fontWeight: 700,
           }}
         >
-          <span style={{ color: "rgba(255,255,255,0.92)" }}>{h.title} </span>
+          <span style={{ color: "var(--color-text-main)" }}>{h.title}&nbsp;</span>
           <br />
           <span className="grad-cyan-gold">{h.titleAccent}</span>
         </h1>
 
+        {/* Geo divider */}
+        <div className="anim-fade-up anim-fade-up-d3 flex justify-center mb-6">
+          <div className="geo-divider" style={{ width: "160px" }}>
+            <span />
+          </div>
+        </div>
+
         {/* Subtitle */}
-        <p
-          className="anim-fade-up anim-fade-up-d3 max-w-2xl mx-auto mb-10 text-lg leading-relaxed"
-          style={{ color: "rgba(255,255,255,0.48)" }}
-        >
+        <p className="anim-fade-up anim-fade-up-d3 max-w-2xl mx-auto mb-10"
+          style={{ fontSize: "1.05rem", lineHeight: 1.75, color: "var(--color-text-sub)", fontWeight: 300 }}>
           {h.subtitle}
         </p>
 
         {/* CTAs */}
-        <div
-          className="anim-fade-up anim-fade-up-d4 flex flex-wrap gap-4 justify-center mb-16"
-        >
+        <div className="anim-fade-up anim-fade-up-d4 flex flex-wrap gap-4 justify-center mb-16">
           <a href="#contact">
-            <button
-              className="group flex items-center gap-2 px-7 py-3.5 rounded-2xl font-black text-sm transition-all duration-300 hover:scale-105"
-              style={{
-                background: "linear-gradient(135deg,#00E5FF,#0055DD)",
-                color: "#0B0B0B",
-                boxShadow: "0 0 32px rgba(0,229,255,0.38)",
-              }}
-            >
-              <Lock size={15} />
+            <button className="btn-primary group">
+              <Lock size={14} />
               {h.cta1}
-              <ArrowRight
-                size={14}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
+              <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </a>
-          <a href="#threat">
-            <button
-              className="flex items-center gap-2 px-7 py-3.5 rounded-2xl font-black text-sm transition-all duration-300 hover:scale-105"
-              style={{
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.14)",
-                color: "#fff",
-              }}
-            >
-              <Activity size={15} style={{ color: "#00E5FF" }} />
+          <a href="#whynow">
+            <button className="btn-ghost">
+              <Activity size={14} style={{ color: "var(--color-cyan)" }} />
               {h.cta2}
             </button>
           </a>
@@ -105,34 +78,24 @@ export default function HeroSection({ t, isAr }) {
         <div className="anim-fade-up anim-fade-up-d5 max-w-lg mx-auto">
           <div className="grid grid-cols-3 gap-3 mb-3">
             {[h.stat1, h.stat2, h.stat3].map((s, i) => (
-              <div
-                key={i}
-                className="rounded-2xl py-4 px-2 text-center transition-all duration-300 hover:scale-105"
-                style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                }}
-              >
-                <div
-                  className="font-black text-xl mb-1"
-                  style={{ color: i === 1 ? "#D4AF37" : "#00E5FF" }}
-                >
+              <div key={i} className="stat-card">
+                <div className="font-display" style={{
+                  fontSize: "1.6rem",
+                  fontWeight: 700,
+                  color: i === 1 ? "var(--color-gold)" : "var(--color-cyan)",
+                  marginBottom: "4px",
+                  letterSpacing: "0.04em",
+                }}>
                   {s.value}
                 </div>
-                <div
-                  className="text-xs leading-tight"
-                  style={{ color: "rgba(255,255,255,0.38)", fontSize: "0.6rem" }}
-                >
+                <div style={{ fontSize: "0.6rem", color: "var(--color-text-dim)", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
                   {s.label}
                 </div>
               </div>
             ))}
           </div>
           {h.statNote && (
-            <p
-              className="text-center text-xs"
-              style={{ color: "rgba(255,255,255,0.2)", fontStyle: "italic" }}
-            >
+            <p className="text-center" style={{ fontSize: "0.6rem", color: "var(--color-text-dim)", fontStyle: "italic", letterSpacing: "0.04em" }}>
               * {h.statNote}
             </p>
           )}
@@ -140,7 +103,8 @@ export default function HeroSection({ t, isAr }) {
       </div>
 
       {/* Scroll hint */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-30 animate-bounce">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce"
+        style={{ opacity: 0.25 }}>
         <ChevronDown size={18} style={{ color: "#fff" }} />
       </div>
     </section>

@@ -7,7 +7,7 @@ export const CONTENT = {
   /* ══════════════════════════════════════════════════════════  ENGLISH  ══ */
   en: {
     dir: "ltr",
-    font: "'Syne', sans-serif",
+    font: "'Barlow', sans-serif",
     nav: {
       brand: "D-VERIFY",
       proposalBadge: "CONCEPT PROPOSAL · 2026",
@@ -232,7 +232,7 @@ export const CONTENT = {
   /* ══════════════════════════════════════════════════════════  ARABIC  ══ */
   ar: {
     dir: "rtl",
-    font: "'Amiri', 'Noto Sans Arabic', serif",
+    font: "'Cairo', sans-serif",
     nav: {
       brand: "د-فيريفاي",
       proposalBadge: "مقترح مفاهيمي · 2026",
@@ -457,7 +457,7 @@ export const CONTENT = {
   /* ══════════════════════════════════════════════════════════  RUSSIAN  ══ */
   ru: {
     dir: "ltr",
-    font: "'Syne', 'Arial', sans-serif",
+    font: "'Barlow', sans-serif",
     nav: {
       brand: "D-VERIFY",
       proposalBadge: "КОНЦЕПТ-ПРЕДЛОЖЕНИЕ · 2026",
